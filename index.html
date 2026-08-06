@@ -4,838 +4,156 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="color-scheme" content="light dark">
 <title>Training HQ</title>
 <style>
-body.on-blake{--bg:#f3f4f6;--panel:#ffffff;--panel2:#e9ecef;--text:#15181c;--dim:#5c646d;--line:#d5dade;--accent:#D9480F;--accsoft:#fdefe7;--bar:#1b1f24;--barText:#eef1f4;--chip:#e9ecef;--hi:#fff6f0;}
-body.on-lyn{--bg:#fdf7f9;--panel:#ffffff;--panel2:#f8eef2;--text:#22121a;--dim:#6f5661;--line:#eedae2;--accent:#C2255C;--accsoft:#fdeef4;--bar:#2b1622;--barText:#f7eaf0;--chip:#f8eef2;--hi:#fef4f8;}
-@media (prefers-color-scheme: dark){
-:root:not([data-theme="light"]) body.on-blake{--bg:#0e1013;--panel:#16191d;--panel2:#1d2126;--text:#e6eaee;--dim:#98a1aa;--line:#292f36;--accent:#FF7A2F;--accsoft:#2a1a11;--bar:#000000;--barText:#e6eaee;--chip:#1d2126;--hi:#20160f;}
-:root:not([data-theme="light"]) body.on-lyn{--bg:#160f14;--panel:#1e151c;--panel2:#271b24;--text:#f2e7ed;--dim:#b49dab;--line:#372632;--accent:#F06595;--accsoft:#2c1a24;--bar:#0d080c;--barText:#f2e7ed;--chip:#271b24;--hi:#26161f;}
-}
-:root[data-theme="dark"] body.on-blake{--bg:#0e1013;--panel:#16191d;--panel2:#1d2126;--text:#e6eaee;--dim:#98a1aa;--line:#292f36;--accent:#FF7A2F;--accsoft:#2a1a11;--bar:#000000;--barText:#e6eaee;--chip:#1d2126;--hi:#20160f;}
-:root[data-theme="light"] body.on-blake{--bg:#f3f4f6;--panel:#ffffff;--panel2:#e9ecef;--text:#15181c;--dim:#5c646d;--line:#d5dade;--accent:#D9480F;--accsoft:#fdefe7;--bar:#1b1f24;--barText:#eef1f4;--chip:#e9ecef;--hi:#fff6f0;}
-:root[data-theme="dark"] body.on-lyn{--bg:#160f14;--panel:#1e151c;--panel2:#271b24;--text:#f2e7ed;--dim:#b49dab;--line:#372632;--accent:#F06595;--accsoft:#2c1a24;--bar:#0d080c;--barText:#f2e7ed;--chip:#271b24;--hi:#26161f;}
-:root[data-theme="light"] body.on-lyn{--bg:#fdf7f9;--panel:#ffffff;--panel2:#f8eef2;--text:#22121a;--dim:#6f5661;--line:#eedae2;--accent:#C2255C;--accsoft:#fdeef4;--bar:#2b1622;--barText:#f7eaf0;--chip:#f8eef2;--hi:#fef4f8;}
-
 *,*::before,*::after{box-sizing:border-box}
+:root{color-scheme:light dark;--radius:10px}
+.blake{--bg:#E9EDF0;--panel:#FFFFFF;--panel2:#F4F6F8;--text:#131A1F;--dim:#4E5D68;--faint:#7B8B96;--line:#D2DAE0;--line2:#E4EAEE;--accent:#D9480F;--accent2:#B23A0C;--accent-w:#FBEBE2;--ok:#1F7A46;--ok-w:#E3F3EA;--warn:#8A5A00;--warn-w:#FBF0DA;--info:#1A5C86;--info-w:#E2EFF7;--neu:#5A6872;--neu-w:#EAEEF1;--on-accent:#fff}
+.lyndsay{--bg:#FAF5F6;--panel:#FFFFFF;--panel2:#F7EFF2;--text:#231018;--dim:#6B4956;--faint:#96707E;--line:#E7D4DB;--line2:#F1E3E8;--accent:#C2255C;--accent2:#9E1C4B;--accent-w:#FBE7EE;--ok:#1F7A46;--ok-w:#E4F2EA;--warn:#8A5A00;--warn-w:#FAF0DB;--info:#1A5C86;--info-w:#E3EFF7;--neu:#6B5560;--neu-w:#F0E8EB;--on-accent:#fff}
+@media (prefers-color-scheme:dark){
+.blake{--bg:#101619;--panel:#182026;--panel2:#1E282F;--text:#E7EEF2;--dim:#9DAEB9;--faint:#75868F;--line:#2A363E;--line2:#222D34;--accent:#FF7A2F;--accent2:#FF9557;--accent-w:#3A1E0E;--ok:#5FD69A;--ok-w:#123125;--warn:#E8B75C;--warn-w:#33260D;--info:#7FC2ED;--info-w:#0F2A3B;--neu:#9DAEB9;--neu-w:#232E35;--on-accent:#10161A}
+.lyndsay{--bg:#170D14;--panel:#22141C;--panel2:#2B1A24;--text:#F5E9EE;--dim:#C4A2B0;--faint:#96707E;--line:#3A2430;--line2:#2F1D28;--accent:#F06595;--accent2:#F58FB2;--accent-w:#43172B;--ok:#5FD69A;--ok-w:#12301F;--warn:#E8B75C;--warn-w:#33260D;--info:#7FC2ED;--info-w:#12283A;--neu:#C4A2B0;--neu-w:#2E1C26;--on-accent:#26101B}}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;overflow-x:clip;background:var(--bg);color:var(--text);
- font:15px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
- font-variant-numeric:tabular-nums;transition:background .18s ease,color .18s ease}
-h1,h2,h3{margin:0;font-weight:650;letter-spacing:-.01em}
-.wrap{max-width:760px;margin:0 auto;padding:0 14px 64px}
-
-/* ---- top bar ---- */
-.topbar{position:sticky;top:0;z-index:20;background:var(--bar);color:var(--barText);
- border-bottom:1px solid rgba(255,255,255,.08)}
-.topbar-in{max-width:760px;margin:0 auto;padding:7px 14px;display:flex;align-items:center;gap:8px}
-.brand{font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;opacity:.62;
- white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
-.tabs{display:flex;gap:6px;margin-left:auto;min-width:0}
-.tab{appearance:none;border:1px solid transparent;background:rgba(255,255,255,.07);color:inherit;
- font:inherit;font-size:12.5px;font-weight:650;letter-spacing:.02em;padding:5px 11px;border-radius:999px;
- cursor:pointer;white-space:nowrap}
-.tab:hover{background:rgba(255,255,255,.14)}
-.tab[aria-selected="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
-.themebtn{appearance:none;border:1px solid rgba(255,255,255,.22);background:transparent;color:inherit;
- cursor:pointer;border-radius:999px;width:28px;height:28px;padding:0;flex:none;display:grid;
- place-items:center}
-.themebtn:hover{background:rgba(255,255,255,.12)}
-.themebtn i{display:block;width:13px;height:13px;border-radius:50%;border:1.6px solid currentColor}
-.themebtn[data-mode="auto"] i{background:linear-gradient(90deg,currentColor 50%,transparent 50%)}
-.themebtn[data-mode="dark"] i{background:currentColor}
-
-/* ---- header ---- */
-header.person{padding:22px 0 4px}
-header.person h1{font-size:23px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.chip{font-size:11.5px;font-weight:650;letter-spacing:.04em;text-transform:uppercase;
- background:var(--chip);color:var(--dim);border:1px solid var(--line);padding:3px 9px;border-radius:999px}
-.chip.accent{background:var(--accent);border-color:var(--accent);color:#fff}
-.chip.deload{background:var(--accsoft);border-color:var(--accent);color:var(--accent)}
-
-.banner{margin:14px 0 0;padding:10px 12px;border-radius:10px;border:1px solid var(--accent);
- background:var(--accsoft);color:var(--accent);font-size:13px;font-weight:600}
-
-h2.sec{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
- margin:30px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line)}
-
-/* ---- session cards ---- */
-.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;
- overflow:hidden}
-.card-h{display:flex;align-items:center;gap:9px;padding:11px 13px;background:var(--panel2);
- border-bottom:1px solid var(--line)}
-.card-h h3{font-size:14px}
-.badge{margin-left:auto;font-size:10.5px;font-weight:750;letter-spacing:.09em;text-transform:uppercase;
- padding:3px 8px;border-radius:5px;border:1px solid var(--line);color:var(--dim);background:var(--panel);
- white-space:nowrap}
-.badge.trained{background:var(--accent);border-color:var(--accent);color:#fff}
-.rows{padding:3px 0}
-.row{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:2px 10px;padding:9px 13px;
- border-bottom:1px solid var(--line)}
+body{margin:0;font-family:"Segoe UI Variable Text","Segoe UI",Roboto,-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:15px;line-height:1.5;background:#14181c}
+.num,td,.rx,.tval{font-variant-numeric:tabular-nums}
+.topbar{position:sticky;top:0;z-index:20;background:#14181c;border-bottom:1px solid #2a3036;padding:8px 14px;display:flex;align-items:center;gap:12px}
+.brand{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8b95a0;font-weight:700}
+.tabs{margin-left:auto;display:flex;gap:6px}
+.tab{appearance:none;border:1px solid #3a424a;background:#1c2228;color:#9aa5b0;font:inherit;font-size:12.5px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:#e8ebee;border-color:#e8ebee;color:#14181c}
+.pane{display:none;background:var(--bg);color:var(--text);min-height:100vh}
+.pane.active{display:block}
+main{max-width:780px;margin:0 auto;padding:18px 14px 64px}
+h1{font-size:clamp(26px,7vw,36px);margin:0 0 10px;letter-spacing:-.02em}
+h1 .sub{color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.chip{font-size:11.5px;font-weight:650;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:6px;background:var(--panel2);color:var(--dim);border:1px solid var(--line2)}
+.chip.hot{background:var(--accent-w);color:var(--accent2);border-color:var(--accent)}
+.banner{border:1px solid var(--accent);border-left-width:3px;background:var(--panel);border-radius:8px;padding:10px 13px;font-size:13.5px;color:var(--dim);margin-bottom:14px}
+section{margin-top:28px}
+.shead{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:12px}
+.shead h2{font-size:13px;letter-spacing:.13em;text-transform:uppercase;margin:0}
+.shead .hint{margin-left:auto;font-size:11.5px;color:var(--faint)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.card.done{border-left:3px solid var(--ok)}
+.card.todo{border-left:3px solid var(--line)}
+.chead{display:flex;align-items:center;gap:9px;padding:10px 13px;background:var(--panel2);border-bottom:1px solid var(--line2)}
+.chead h3{font-size:13.5px;margin:0;letter-spacing:.02em;text-transform:uppercase}
+.badge{margin-left:auto;font-size:10.5px;font-weight:750;letter-spacing:.1em;padding:3px 8px;border-radius:5px}
+.b-ok{background:var(--ok-w);color:var(--ok)}.b-wait{background:var(--neu-w);color:var(--neu)}
+.rows{padding:4px 13px 8px}
+.row{display:grid;grid-template-columns:1fr auto;gap:1px 12px;padding:8px 0;border-bottom:1px dashed var(--line2)}
 .row:last-child{border-bottom:0}
-.row.driver{background:var(--hi);box-shadow:inset 3px 0 0 var(--accent)}
-.nm{font-size:14px;font-weight:600;overflow-wrap:anywhere}
-.nm .f{font-size:9.5px;font-weight:800;color:var(--accent);border:1px solid var(--accent);
- border-radius:3px;padding:0 3px;margin-left:5px;vertical-align:2px}
-.rule{grid-column:1;font-size:11.5px;color:var(--dim);line-height:1.4;overflow-wrap:anywhere}
-.rx{grid-column:2;grid-row:1;text-align:right;font-size:13px;font-weight:650;overflow-wrap:anywhere}
-.log{grid-column:2;grid-row:2;text-align:right;font-size:11.5px;color:var(--dim);line-height:1.5}
-.pill{display:inline-block;font-size:10px;font-weight:750;letter-spacing:.06em;text-transform:uppercase;
- padding:1px 6px;border-radius:999px;border:1px solid var(--line);color:var(--dim);margin-left:6px;
- opacity:.85}
-
-/* ---- tables ---- */
-.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);
- border-radius:12px;background:var(--panel)}
-table{border-collapse:collapse;width:100%;min-width:640px;font-size:12.5px}
-th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-thead th{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);
- background:var(--panel2);white-space:nowrap;position:sticky;top:0}
-tbody th{font-weight:650;white-space:nowrap;background:var(--panel)}
-tr:last-child td,tr:last-child th{border-bottom:0}
-td.cur,th.cur{background:var(--hi);box-shadow:inset 0 0 0 1px var(--accent)}
-td.future{color:var(--dim)}
-.dl{display:block;font-size:9.5px;font-weight:800;letter-spacing:.08em;color:var(--accent);
- text-transform:uppercase}
-.proj{display:block;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);
- margin-bottom:3px}
-.map td{min-width:190px}
-.map li{margin:0 0 2px;list-style:none}
-.map ul{margin:0;padding:0}
-.map b{font-weight:750}
-.e1{font-weight:700}
-
-/* ---- tiles ---- */
-.tilegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:9px;margin-bottom:8px}
-.tile{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:11px 12px}
-.tile .k{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--dim)}
-.tile .v{font-size:21px;font-weight:700;margin-top:3px;letter-spacing:-.02em}
-.tile .v.pend{font-size:15px;color:var(--dim);font-weight:600}
-.tile .t{font-size:11px;color:var(--dim);margin-top:2px}
-.grouplabel{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
- color:var(--accent);margin:14px 0 7px}
-
-/* ---- lists ---- */
-ul.flags{list-style:none;margin:0;padding:0}
-ul.flags li{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
- border-radius:8px;padding:10px 12px;margin-bottom:8px;font-size:13.5px}
-ol.hist{list-style:none;margin:0;padding:0;counter-reset:h}
-ol.hist li{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;
- margin-bottom:8px}
-ol.hist .when{font-size:10.5px;font-weight:750;letter-spacing:.08em;text-transform:uppercase;
- color:var(--accent);margin-bottom:3px}
-ol.hist p{margin:0;font-size:13.5px}
-dl.legend{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:4px 13px}
-dl.legend div{padding:9px 0;border-bottom:1px solid var(--line)}
-dl.legend div:last-child{border-bottom:0}
-dl.legend dt{font-size:12.5px;font-weight:700}
-dl.legend dd{margin:2px 0 0;font-size:12.5px;color:var(--dim)}
-.foot{margin-top:26px;font-size:11px;color:var(--dim);text-align:center}
-[hidden]{display:none!important}
-@media (max-width:560px){.brand{display:none}.tabs{margin-left:0}}
-@media (max-width:400px){
- .wrap{padding:0 10px 64px}
- .topbar-in{padding:6px 10px;gap:6px}
- .tab{font-size:11.5px;padding:5px 8px}
- .row,.card-h{padding-left:11px;padding-right:11px}
-}
-
+.row.drv{position:relative}
+.row.drv::before{content:"";position:absolute;left:-13px;top:8px;bottom:8px;width:2px;background:var(--accent)}
+.row.drv .nm{font-weight:700}
+.nm{font-size:14px}
+.rule{display:block;font-size:11px;color:var(--faint)}
+.rx{grid-column:1;font-size:12.5px;color:var(--dim)}
+.logged{grid-column:1;font-size:12.5px;color:var(--dim)}
+.lbl{display:inline-block;min-width:48px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.pill{grid-column:2;grid-row:1/4;align-self:center;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px;white-space:nowrap}
+.p-up{background:var(--ok-w);color:var(--ok)}.p-hold{background:var(--neu-w);color:var(--neu)}
+.p-warn{background:var(--warn-w);color:var(--warn)}.p-sub{background:var(--info-w);color:var(--info)}
+.p-none{color:var(--faint);border:1px dashed var(--line)}
+.scroller{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:560px}
+thead th{background:var(--panel2);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:700;padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+thead th.cur{color:var(--accent)}
+tbody th{text-align:left;padding:10px;font-weight:650;border-bottom:1px solid var(--line2);white-space:nowrap;background:var(--panel);position:sticky;left:0}
+tbody td{padding:10px;border-bottom:1px solid var(--line2);color:var(--dim);white-space:nowrap}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+td.cur{color:var(--text);font-weight:650;background:var(--accent-w)}
+td .sub{display:block;font-size:11px;color:var(--dim);font-weight:400}
+td.e1{font-weight:700;color:var(--text);background:var(--panel2)}
+.tgroup{margin-bottom:12px}
+.tgroup h4{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:9px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 12px}
+.tile.empty{border-style:dashed;background:transparent}
+.tlabel{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:700}
+.tval{font-size:23px;font-weight:700;line-height:1.2}
+.tile.empty .tval{color:var(--faint);font-weight:400}
+.tunit{font-size:12px;font-weight:600;color:var(--dim)}
+.tsub{font-size:11px;color:var(--faint)}
+ul.flags{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+ul.flags li{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:8px;padding:9px 12px;font-size:13.5px;color:var(--dim)}
+ol.hist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+ol.hist li{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.hlabel{font-size:12px;font-weight:750;color:var(--accent)}
+.htext{margin:5px 0 0;font-size:13px;color:var(--dim)}
+details.period{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;padding:0 13px}
+details.period summary{cursor:pointer;padding:11px 0;font-weight:700;font-size:13.5px;list-style:none;display:flex;align-items:center;gap:8px}
+details.period summary::before{content:"▸";color:var(--accent);transition:transform .15s}
+details.period[open] summary::before{transform:rotate(90deg)}
+details.period .pbody{padding:2px 0 12px}
+details.period .pnote{font-size:12px;color:var(--faint);margin-top:8px}
+dl.legend{margin:0;display:grid;grid-template-columns:auto 1fr;gap:7px 12px;font-size:13px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:13px}
+dl.legend dt{font-weight:700;white-space:nowrap}
+dl.legend dd{margin:0;color:var(--dim)}
+footer{max-width:780px;margin:0 auto;padding:0 14px 40px;font-size:11px;color:#6b7580;text-align:center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
-<body class="on-blake">
-<div class="topbar"><div class="topbar-in">
- <span class="brand">Training HQ</span>
- <div class="tabs" role="tablist">
-  <button class="tab" id="tab-blake" role="tab" aria-selected="true" aria-controls="sec-blake">⚡ Blake</button>
-  <button class="tab" id="tab-lyndsay" role="tab" aria-selected="false" aria-controls="sec-lyndsay">🚛 Lynnie Legs</button>
- </div>
- <button class="themebtn" id="themebtn" type="button" data-mode="auto" aria-label="Toggle theme"><i></i></button>
-</div></div>
-
-<main class="wrap">
-
-<section id="sec-blake" class="panelsec">
- <header class="person">
-  <h1>Blake &mdash; Hybrid Weapon</h1>
-  <div class="chips"><span class="chip accent">Rotation 1</span><span class="chip">Build</span></div>
- </header>
-
- <h2 class="sec">This rotation</h2>
- <article class="card"><div class="card-h"><h3>① Lower A</h3><span class="badge">Pending</span></div><div class="rows"><div class="row"><div class="nm">Jump Rope (pogo)</div><div class="rx">2 sets</div><div class="rule">manual</div><div class="log">— contacts<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Sprints</div><div class="rx">5×20m @95%</div><div class="rule">manual · advances one step of the speed table each rotation</div><div class="log">— sec<span class="pill">not logged</span></div></div><div class="row driver"><div class="nm">Squat (Barbell)</div><div class="rx">top 210×4-6 · 3×195</div><div class="rule">top/backoff 4-6 +5lb bo7%</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Romanian Deadlift (Barbell)</div><div class="rx">160 lb · 3×6-8</div><div class="rule">double 6-8 +10lb</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Bulgarian Split Squat (Dumbbell)</div><div class="rx">60 lb · 2×8-12</div><div class="rule">double 8-12 +10lb · first exposure - calibrate</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Lying Leg Curl (Machine)</div><div class="rx">75 lb · 2×10-15</div><div class="rule">double 10-15 +5lb</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Standing Calf Raise (Dumbbell)</div><div class="rx">60 lb · 3×8-12</div><div class="rule">double 8-12 +5lb</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Suitcase Carry (Dumbbell)</div><div class="rx">70 lb · 2×35 yd</div><div class="rule">manual</div><div class="log">—<span class="pill">not logged</span></div></div></div></article><article class="card"><div class="card-h"><h3>② Upper A</h3><span class="badge">Pending</span></div><div class="rows"><div class="row"><div class="nm">Clap Push Ups (plyo)</div><div class="rx">3×3-5</div><div class="rule">manual</div><div class="log">— reps<span class="pill">not logged</span></div></div><div class="row driver"><div class="nm">Bench Press (Barbell)</div><div class="rx">top 195×4-6 · 3×180</div><div class="rule">top/backoff 4-6 +5lb bo7%</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row driver"><div class="nm">Pull Up (Weighted)</div><div class="rx">12.5 lb · 3×4-6</div><div class="rule">double 4-6 +5lb</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Incline Bench Press (Dumbbell)</div><div class="rx">110 lb · 3×8-12</div><div class="rule">double 8-12 +10lb</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Chest Supported Incline Row (Dumbbell)</div><div class="rx">120 lb · 3×8-12</div><div class="rule">double 8-12 +10lb</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Seated Incline Curl (Dumbbell)</div><div class="rx">40 lb · 2×10-15</div><div class="rule">double 10-15 +10lb</div><div class="log">—<span class="pill">not logged</span></div></div></div></article><article class="card"><div class="card-h"><h3>③ Lower B</h3><span class="badge">Pending</span></div><div class="rows"><div class="row"><div class="nm">Vertical Jump — Height</div><div class="rx">4×2 max CMJ, inches</div><div class="rule">manual</div><div class="log">— in<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Broad Jump (Max Effort)</div><div class="rx">3×2 broad</div><div class="rule">manual · alternates broad ↔ 5-10-5 shuttle each rotation</div><div class="log">— in<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Lateral Bound to Stick</div><div class="rx">3/side</div><div class="rule">manual</div><div class="log">— reps<span class="pill">not logged</span></div></div><div class="row driver"><div class="nm">Deadlift (Trap bar)</div><div class="rx">top 245×3-5 · 2×220</div><div class="rule">top/backoff 3-5 +10lb bo9%</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Hack Squat (Machine)</div><div class="rx">160 lb · 3×6-10</div><div class="rule">double 6-10 +10lb · leg press = sanctioned stand-in, separate track</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Nordic Hamstrings Curls</div><div class="rx">2×4-6</div><div class="rule">manual · assisted</div><div class="log">— reps<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Leg Extension (Machine)</div><div class="rx">140 lb · 2×10-15</div><div class="rule">double 10-15 +5lb</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Calf Press (Machine)</div><div class="rx">360 lb · 3×10-15</div><div class="rule">double 10-15 +10lb</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Farmers Walk</div><div class="rx">140 lb · 2×35 yd</div><div class="rule">manual</div><div class="log">—<span class="pill">not logged</span></div></div></div></article><article class="card"><div class="card-h"><h3>④ Upper B</h3><span class="badge">Pending</span></div><div class="rows"><div class="row driver"><div class="nm">Overhead Press (Barbell)</div><div class="rx">top 110×4-6 · 2×100</div><div class="rule">top/backoff 4-6 +5lb bo9%</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Seated Cable Row - V Grip (Cable)</div><div class="rx">125 lb · 3×6-10</div><div class="rule">double 6-10 +5lb</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Chest Dip (Weighted)</div><div class="rx">bodyweight · 3×6-10</div><div class="rule">double 6-10 +5lb · BW start; CGB 3×6-10 @160 if shoulders complain</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Lat Pulldown (Cable)</div><div class="rx">100 lb · 3×8-12</div><div class="rule">double 8-12 +10lb · first exposure - calibrate</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Lateral Raise (Dumbbell)</div><div class="rx">30 lb · 2×12-20</div><div class="rule">double 12-20 +10lb</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Hammer Curl (Dumbbell)</div><div class="rx">60 lb · 2×8-12</div><div class="rule">double 8-12 +10lb</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Hanging Leg Raise</div><div class="rx">2×8-15</div><div class="rule">manual</div><div class="log">— reps<span class="pill">not logged</span></div></div></div></article><article class="card"><div class="card-h"><h3>⑤ Zone 2 + Armor</h3><span class="badge">Pending</span></div><div class="rows"><div class="row"><div class="nm">Cycling Z2</div><div class="rx">45-50min bike/run/ruck</div><div class="rule">manual</div><div class="log">— watts<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Single Arm Lateral Raise (Cable)</div><div class="rx">15 lb · 3×12-20</div><div class="rule">double 12-20 +5lb</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Face Pull</div><div class="rx">50 lb · 2×12-20</div><div class="rule">double 12-20 +5lb</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Overhead Triceps Extension (Cable)</div><div class="rx">35 lb · 2×10-15</div><div class="rule">double 10-15 +5lb</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Tibialis Raise</div><div class="rx">2×15-25</div><div class="rule">manual</div><div class="log">— reps<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Copenhagen (Side Plank)</div><div class="rx">20-30s/side</div><div class="rule">manual</div><div class="log">— sec<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Cable Core Pallof Press</div><div class="rx">20 lb · 2×10-15</div><div class="rule">double 10-15 +5lb</div><div class="log">—<span class="pill">not logged</span></div></div></div></article><article class="card"><div class="card-h"><h3>⑥ Norwegian 4×4</h3><span class="badge">Pending</span></div><div class="rows"><div class="row"><div class="nm">Cycling 4x4</div><div class="rx">4×4:00 @RPE8-9 / 3:00 easy</div><div class="rule">manual</div><div class="log">— watts<span class="pill">not logged</span></div></div></div></article>
-
- <h2 class="sec">Main-lift ladder</h2>
- <div class="scroll"><table><thead><tr><th>Lift</th><th class="cur">R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5<span class="dl">Deload</span></th><th>e1RM</th></tr></thead><tbody><tr><th>Squat</th><td class="cur">210<span class="proj">top · 4-6</span></td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="e1">&mdash;</td></tr><tr><th>Bench Press</th><td class="cur">195<span class="proj">top · 4-6</span></td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="e1">&mdash;</td></tr><tr><th>Trap-Bar Deadlift</th><td class="cur">245<span class="proj">top · 3-5</span></td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="e1">&mdash;</td></tr><tr><th>Overhead Press</th><td class="cur">110<span class="proj">top · 4-6</span></td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="e1">&mdash;</td></tr><tr><th>Weighted Pull-Up</th><td class="cur">12.5<span class="proj">3×4-6</span></td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="e1">&mdash;</td></tr></tbody></table></div>
-
- <h2 class="sec">Rotation map</h2>
- <div class="scroll"><table class="map"><thead><tr><th>Session</th><th class="cur">R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5<span class="dl">Deload</span></th></tr></thead><tbody><tr><th>① Lower A</th><td class="cur"><ul><li>Jump Rope (pogo) 2 sets</li><li>Sprints 5×20m @95%</li><li><b>Squat top 210×4-6 · 3×195</b></li><li>Romanian Deadlift 160 3×6-8</li><li>Bulgarian Split Squat DB 60 2×8-12</li><li>Lying Leg Curl 75 2×10-15</li><li>Standing Calf Raise DB 60 3×8-12</li><li>Suitcase Carry DB 70 lb 2×35yd</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li>Jump Rope (pogo) 2 sets</li><li>Sprints 5×20m @95-98%</li><li><b>Squat top 215×4-6 · 3×200</b></li><li>Romanian Deadlift 160 3×6-8</li><li>Bulgarian Split Squat DB 60 2×8-12</li><li>Lying Leg Curl 75 2×10-15</li><li>Standing Calf Raise DB 60 3×8-12</li><li>Suitcase Carry DB 70 lb 2×35yd</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li>Jump Rope (pogo) 2 sets</li><li>Sprints deload 3×15m @85-90%</li><li><b>Squat top 220×4-6 · 3×205</b></li><li>Romanian Deadlift 160 3×6-8</li><li>Bulgarian Split Squat DB 60 2×8-12</li><li>Lying Leg Curl 75 2×10-15</li><li>Standing Calf Raise DB 60 3×8-12</li><li>Suitcase Carry DB 70 lb 2×35yd</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li>Jump Rope (pogo) 2 sets</li><li>Sprints after 6+ pain-free exposures: 3×20m accel + 2x flying 10m (20m build), rest 3-4min</li><li><b>Squat top 225×4-6 · 3×210</b></li><li>Romanian Deadlift 160 3×6-8</li><li>Bulgarian Split Squat DB 60 2×8-12</li><li>Lying Leg Curl 75 2×10-15</li><li>Standing Calf Raise DB 60 3×8-12</li><li>Suitcase Carry DB 70 lb 2×35yd</li></ul></td><td class="future"><span class="dl">Deload</span>Same movements, top sets off, volume cut to ≈60%.</td></tr><tr><th>② Upper A</th><td class="cur"><ul><li>Clap Push Ups (plyo) 3×3-5</li><li><b>Bench Press top 195×4-6 · 3×180</b></li><li><b>Pull Up (wtd) 12.5 3×4-6</b></li><li>Incline Bench Press DB 110 3×8-12</li><li>Chest Supported Incline Row DB 120 3×8-12</li><li>Seated Incline Curl DB 40 2×10-15</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li>Clap Push Ups (plyo) 3×3-5</li><li><b>Bench Press top 200×4-6 · 3×185</b></li><li><b>Pull Up (wtd) 12.5 3×4-6</b></li><li>Incline Bench Press DB 110 3×8-12</li><li>Chest Supported Incline Row DB 120 3×8-12</li><li>Seated Incline Curl DB 40 2×10-15</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li>Clap Push Ups (plyo) 3×3-5</li><li><b>Bench Press top 205×4-6 · 3×190</b></li><li><b>Pull Up (wtd) 12.5 3×4-6</b></li><li>Incline Bench Press DB 110 3×8-12</li><li>Chest Supported Incline Row DB 120 3×8-12</li><li>Seated Incline Curl DB 40 2×10-15</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li>Clap Push Ups (plyo) 3×3-5</li><li><b>Bench Press top 210×4-6 · 3×195</b></li><li><b>Pull Up (wtd) 12.5 3×4-6</b></li><li>Incline Bench Press DB 110 3×8-12</li><li>Chest Supported Incline Row DB 120 3×8-12</li><li>Seated Incline Curl DB 40 2×10-15</li></ul></td><td class="future"><span class="dl">Deload</span>Same movements, top sets off, volume cut to ≈60%.</td></tr><tr><th>③ Lower B</th><td class="cur"><ul><li>Vertical Jump — Height 4×2 max CMJ, inches</li><li>Broad Jump (Max Effort) 3×2 broad</li><li>Lateral Bound to Stick 3/side</li><li><b>Deadlift (trap) top 245×3-5 · 2×220</b></li><li>Hack Squat 160 3×6-10</li><li>Nordic Hamstrings Curls 2×4-6</li><li>Leg Extension 140 2×10-15</li><li>Calf Press 360 3×10-15</li><li>Farmers Walk 140 lb 2×35yd</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li>Vertical Jump — Height 4×2 max CMJ, inches</li><li>Broad Jump (Max Effort) 3×2 5-10-5 shuttle</li><li>Lateral Bound to Stick 3/side</li><li><b>Deadlift (trap) top 255×3-5 · 2×230</b></li><li>Hack Squat 160 3×6-10</li><li>Nordic Hamstrings Curls 2×4-6</li><li>Leg Extension 140 2×10-15</li><li>Calf Press 360 3×10-15</li><li>Farmers Walk 140 lb 2×35yd</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li>Vertical Jump — Height 4×2 max CMJ, inches</li><li>Broad Jump (Max Effort) 3×2 broad</li><li>Lateral Bound to Stick 3/side</li><li><b>Deadlift (trap) top 265×3-5 · 2×240</b></li><li>Hack Squat 160 3×6-10</li><li>Nordic Hamstrings Curls 2×4-6</li><li>Leg Extension 140 2×10-15</li><li>Calf Press 360 3×10-15</li><li>Farmers Walk 140 lb 2×35yd</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li>Vertical Jump — Height 4×2 max CMJ, inches</li><li>Broad Jump (Max Effort) 3×2 5-10-5 shuttle</li><li>Lateral Bound to Stick 3/side</li><li><b>Deadlift (trap) top 275×3-5 · 2×250</b></li><li>Hack Squat 160 3×6-10</li><li>Nordic Hamstrings Curls 2×4-6</li><li>Leg Extension 140 2×10-15</li><li>Calf Press 360 3×10-15</li><li>Farmers Walk 140 lb 2×35yd</li></ul></td><td class="future"><span class="dl">Deload</span>Same movements, top sets off, volume cut to ≈60%.</td></tr><tr><th>④ Upper B</th><td class="cur"><ul><li><b>Overhead Press top 110×4-6 · 2×100</b></li><li>Seated Cable Row cbl 125 3×6-10</li><li>Chest Dip (wtd) BW 3×6-10</li><li>Lat Pulldown cbl 100 3×8-12</li><li>Lateral Raise DB 30 2×12-20</li><li>Hammer Curl DB 60 2×8-12</li><li>Hanging Leg Raise 2×8-15</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li><b>Overhead Press top 115×4-6 · 2×105</b></li><li>Seated Cable Row cbl 125 3×6-10</li><li>Chest Dip (wtd) BW 3×6-10</li><li>Lat Pulldown cbl 100 3×8-12</li><li>Lateral Raise DB 30 2×12-20</li><li>Hammer Curl DB 60 2×8-12</li><li>Hanging Leg Raise 2×8-15</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li><b>Overhead Press top 120×4-6 · 2×110</b></li><li>Seated Cable Row cbl 125 3×6-10</li><li>Chest Dip (wtd) BW 3×6-10</li><li>Lat Pulldown cbl 100 3×8-12</li><li>Lateral Raise DB 30 2×12-20</li><li>Hammer Curl DB 60 2×8-12</li><li>Hanging Leg Raise 2×8-15</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li><b>Overhead Press top 125×4-6 · 2×115</b></li><li>Seated Cable Row cbl 125 3×6-10</li><li>Chest Dip (wtd) BW 3×6-10</li><li>Lat Pulldown cbl 100 3×8-12</li><li>Lateral Raise DB 30 2×12-20</li><li>Hammer Curl DB 60 2×8-12</li><li>Hanging Leg Raise 2×8-15</li></ul></td><td class="future"><span class="dl">Deload</span>Same movements, top sets off, volume cut to ≈60%.</td></tr><tr><th>⑤ Zone 2 + Armor</th><td class="cur"><ul><li>Cycling Z2 45-50min bike/run/ruck</li><li>Single Arm Lateral Raise cbl 15 3×12-20</li><li>Face Pull 50 2×12-20</li><li>Overhead Triceps Extension cbl 35 2×10-15</li><li>Tibialis Raise 2×15-25</li><li>Copenhagen (Side Plank) 20-30s/side</li><li>Cable Core Pallof Press 20 2×10-15</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li>Cycling Z2 45-50min bike/run/ruck</li><li>Single Arm Lateral Raise cbl 15 3×12-20</li><li>Face Pull 50 2×12-20</li><li>Overhead Triceps Extension cbl 35 2×10-15</li><li>Tibialis Raise 2×15-25</li><li>Copenhagen (Side Plank) 20-30s/side</li><li>Cable Core Pallof Press 20 2×10-15</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li>Cycling Z2 45-50min bike/run/ruck</li><li>Single Arm Lateral Raise cbl 15 3×12-20</li><li>Face Pull 50 2×12-20</li><li>Overhead Triceps Extension cbl 35 2×10-15</li><li>Tibialis Raise 2×15-25</li><li>Copenhagen (Side Plank) 20-30s/side</li><li>Cable Core Pallof Press 20 2×10-15</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li>Cycling Z2 45-50min bike/run/ruck</li><li>Single Arm Lateral Raise cbl 15 3×12-20</li><li>Face Pull 50 2×12-20</li><li>Overhead Triceps Extension cbl 35 2×10-15</li><li>Tibialis Raise 2×15-25</li><li>Copenhagen (Side Plank) 20-30s/side</li><li>Cable Core Pallof Press 20 2×10-15</li></ul></td><td class="future"><span class="dl">Deload</span>Same movements, top sets off, volume cut to ≈60%.</td></tr><tr><th>⑥ Norwegian 4×4</th><td class="cur"><ul><li>Cycling 4×4 4×4:00 @RPE8-9 / 3:00 easy · bike or run</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li>Cycling 4×4 4×4:00 @RPE8-9 / 3:00 easy · bike or run</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li>Cycling 4×4 4×4:00 @RPE8-9 / 3:00 easy · bike or run</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li>Cycling 4×4 4×4:00 @RPE8-9 / 3:00 easy · bike or run</li></ul></td><td class="future"><span class="dl">Deload</span>Same movements, top sets off, volume cut to ≈60%.</td></tr></tbody></table></div>
-
- <h2 class="sec">Explosive &middot; Engine &middot; Body</h2>
- <div class="grouplabel">Explosive</div><div class="tilegrid"><div class="tile"><div class="k">Vertical jump</div><div class="v pend">not yet logged</div><div class="t">chalk CMJ</div></div><div class="tile"><div class="k">Broad jump</div><div class="v pend">not yet logged</div><div class="t">max effort</div></div><div class="tile"><div class="k">20 m sprint</div><div class="v pend">not yet logged</div><div class="t">flying/accel</div></div><div class="tile"><div class="k">5-10-5 shuttle</div><div class="v pend">not yet logged</div><div class="t">pro agility</div></div></div>
- <div class="grouplabel">Engine</div><div class="tilegrid"><div class="tile"><div class="k">HRmax</div><div class="v pend">not yet logged</div><div class="t">last 4×4 interval</div></div><div class="tile"><div class="k">VO₂max est.</div><div class="v pend">not yet logged</div></div><div class="tile"><div class="k">4×4 avg watts</div><div class="v pend">not yet logged</div></div><div class="tile"><div class="k">Zone 2</div><div class="v pend">not yet logged</div><div class="t">watts or pace</div></div></div>
- <div class="grouplabel">Body</div><div class="tilegrid"><div class="tile"><div class="k">Bodyweight</div><div class="v">211 lb</div><div class="t">trend needs more weigh-ins</div></div><div class="tile"><div class="k">Waist</div><div class="v">35.5 in</div></div><div class="tile"><div class="k">Chest</div><div class="v">41.3 in</div></div><div class="tile"><div class="k">Thigh</div><div class="v">24.6 in</div></div><div class="tile"><div class="k">Bicep</div><div class="v">15.75 in</div></div></div>
-
- <h2 class="sec">Do this</h2>
- <ul class="flags"><li>Calibrate the first exposures from their first log: DB Bulgarian Split Squat, weighted Chest Dip, Lat Pulldown, trap-bar Deadlift top set, plyo push-ups, Lateral Bound to Stick, cable lateral raise, Pallof press.</li><li>Log the explosive baselines on ③ Lower B: chalk CMJ height and broad jump in inches, plus a 20 m sprint time.</li><li>Log the engine baselines: HRmax and average watts on the last ⑥ Norwegian 4×4 interval, and Zone 2 watts.</li><li>Hold a ~150–250 kcal/day surplus with 3–5 g/day creatine; weigh in 3–4×/week for the weekly average.</li><li>Sprints advance one step of the speed table each rotation — currently 5×20m @95%.</li></ul>
-
- <h2 class="sec">History</h2>
- <ol class="hist"><li><div class="when">Rotation clock · earlier</div><p>① Lower A trained. Squat 210×4×4, every set clean — earned +5 lb. Hack Squat 160 lb moved 8 → 9 reps. Leg Extension held at 140.</p></li><li><div class="when">Rotation clock · latest</div><p>② Upper A, a deadlift session standing in for ③ Lower B, and ④ Upper B all trained. Bench Press 190×5 clean → 195. Overhead Press 105×5 clean → 110. Incline Row, Cable Row, Shoulder Press and Pullover each added a rep. Deadlift held at 245 — an off-plan 255×3,3,2 came up a rep and a set short. Romanian Deadlift substituted with Single-Leg RDL at 60 lb.</p></li></ol>
-
- <h2 class="sec">Legend</h2>
- <dl class="legend"><div><dt>Top set + back-offs</dt><dd>One heaviest set of the day taken in the target range, then the listed back-off sets at a fixed percentage below it. Clear the top set inside its range on every prescribed set and the top load steps up.</dd></div><div><dt>Double progression</dt><dd>Accessories hold their load and climb reps to the top of the range first. Once every set hits the top of the range, the load steps up and the reps reset to the bottom.</dd></div><div><dt>Readiness — GREEN / YELLOW / RED</dt><dd>Called at the top of the workout note. GREEN runs the session as written. YELLOW drops sprints and max jumps and cuts one back-off set. RED removes heavy and explosive work. A YELLOW or RED session is never penalised with a hold or a reset.</dd></div><div><dt>Rotation clock</dt><dd>Time runs in rotations, not weeks. A rotation is Lower A → Upper A → Lower B → Upper B, with Zone 2 + Armor and the Norwegian 4×4 floating anywhere inside it. The rotation advances when the four lift days are done, in any order and on any schedule.</dd></div><div><dt>Result pills</dt><dd>+5 → 215 load earned. REBASED first-exposure load corrected from the log. CALIBRATED starting load set. HELD range not cleared. RESET load backed off. SUBSTITUTED a sanctioned stand-in was trained.</dd></div></dl>
-</section>
-
-
-<section id="sec-lyndsay" class="panelsec" hidden>
- <header class="person">
-  <h1>Lynnie Legs</h1>
-  <div class="chips"><span class="chip accent">Week 1 of 5</span><span class="chip">Meso 1</span></div>
- </header>
-
- <h2 class="sec">This week</h2>
- <article class="card"><div class="card-h"><h3>① LOWER — Hip Thrust</h3><span class="badge">Pending</span></div><div class="rows"><div class="row driver"><div class="nm">Hip Thrust (Barbell)</div><div class="rx">185 lb · 3×6-10</div><div class="rule">double 6-10 +10lb · heavy track - independent of day 2</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Bulgarian Split Squat (Smith or DB)</div><div class="rx">50 lb · 3×8-12</div><div class="rule">double 8-12 +5lb · per leg, weaker leg first, DEEP, Smith (DB fallback = separate track)</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Romanian Deadlift (Smith or Barbell)</div><div class="rx">95 lb · 3×8-12</div><div class="rule">double 8-12 +10lb · first exposure - calibrate, rebase upward from log</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Hip Abduction (Machine)<span class="f">F</span></div><div class="rx">120 lb · 3×12-20</div><div class="rule">double 12-20 +10lb · A track - independent of day 2</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Leg Extension (Machine)<span class="f">F</span></div><div class="rx">90 lb · 3×10-15</div><div class="rule">double 10-15 +5lb · A track (heavier), reclined</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Hanging Leg Raise</div><div class="rx">2×8-15</div><div class="rule">manual</div><div class="log">—<span class="pill">not logged</span></div></div></div></article><article class="card"><div class="card-h"><h3>② LOWER — Squat</h3><span class="badge">Pending</span></div><div class="rows"><div class="row driver"><div class="nm">Squat (Smith Machine)</div><div class="rx">105 lb · 3×8-12</div><div class="rule">double 8-12 +5lb · DEEP below parallel every rep</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row driver"><div class="nm">Hip Thrust (Barbell)</div><div class="rx">155 lb · 3×10-15</div><div class="rule">double 10-15 +10lb · moderate track - independent of day 1</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Hip Abduction (Machine)<span class="f">F</span></div><div class="rx">110 lb · 3×15-25</div><div class="rule">double 15-25 +10lb · B track - earn 120 independently</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Seated Leg Curl (Machine)<span class="f">F</span></div><div class="rx">50 lb · 3×8-12</div><div class="rule">double 8-12 +5lb</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Leg Extension (Machine)<span class="f">F</span></div><div class="rx">80 lb · 3×12-15</div><div class="rule">double 12-15 +5lb · B track, reclined</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Standing Calf Raise</div><div class="rx">55 lb · 3×8-12</div><div class="rule">double 8-12 +10lb · first loaded exposure - calibrate, rebase upward</div><div class="log">—<span class="pill">not logged</span></div></div><div class="row"><div class="nm">Sit Up (Weighted)</div><div class="rx">25 lb · 2×10-15</div><div class="rule">double 10-15 +5lb</div><div class="log">—<span class="pill">not logged</span></div></div></div></article>
-
- <h2 class="sec">Anchor ladder</h2>
- <div class="scroll"><table><thead><tr><th>Anchor</th><th class="cur">W1</th><th>W2</th><th>W3</th><th>W4</th><th>W5<span class="dl">Deload</span></th></tr></thead><tbody><tr><th>Hip Thrust (heavy)</th><td class="cur">185 lb<span class="proj">3×6-10</span></td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future"><span class="dl">Deload</span></td></tr><tr><th>Smith Squat</th><td class="cur">105 lb<span class="proj">3×8-12</span></td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future"><span class="dl">Deload</span></td></tr><tr><th>Hip Abduction A</th><td class="cur">120 lb<span class="proj">3×12-20 F</span></td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future">&mdash;</td><td class="future"><span class="dl">Deload</span></td></tr></tbody></table></div>
-
- <h2 class="sec">Mesocycle map</h2>
- <div class="scroll"><table class="map"><thead><tr><th>Session</th><th class="cur">W1</th><th>W2</th><th>W3</th><th>W4</th><th>W5<span class="dl">Deload</span></th></tr></thead><tbody><tr><th>① LOWER — Hip Thrust</th><td class="cur"><ul><li><b>Hip Thrust 185 3×6-10</b></li><li>Bulgarian Split Squat 50 3×8-12</li><li>Romanian Deadlift 95 3×8-12</li><li>Hip Abduction 120 3×12-20 F</li><li>Leg Extension 90 3×10-15 F</li><li>Hanging Leg Raise 2×8-15</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li><b>Hip Thrust 185 3×6-10</b></li><li>Bulgarian Split Squat 50 3×8-12</li><li>Romanian Deadlift 95 3×8-12</li><li>Hip Abduction 120 3×12-20 F</li><li>Leg Extension 90 3×10-15 F</li><li>Hanging Leg Raise 2×8-15</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li><b>Hip Thrust 185 3×6-10</b></li><li>Bulgarian Split Squat 50 3×8-12</li><li>Romanian Deadlift 95 3×8-12</li><li>Hip Abduction 120 3×12-20 F</li><li>Leg Extension 90 3×10-15 F</li><li>Hanging Leg Raise 2×8-15</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li><b>Hip Thrust 185 3×6-10</b></li><li>Bulgarian Split Squat 50 3×8-12</li><li>Romanian Deadlift 95 3×8-12</li><li>Hip Abduction 120 3×12-20 F</li><li>Leg Extension 90 3×10-15 F</li><li>Hanging Leg Raise 2×8-15</li></ul></td><td class="future"><span class="dl">Deload</span>Same movements, no failure sets, volume cut to ≈60%.</td></tr><tr><th>② LOWER — Squat</th><td class="cur"><ul><li><b>Squat (Smith) 105 3×8-12</b></li><li><b>Hip Thrust 155 3×10-15</b></li><li>Hip Abduction 110 3×15-25 F</li><li>Seated Leg Curl 50 3×8-12 F</li><li>Leg Extension 80 3×12-15 F</li><li>Standing Calf Raise 55 3×8-12</li><li>Sit Up (wtd) 25 2×10-15</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li><b>Squat (Smith) 105 3×8-12</b></li><li><b>Hip Thrust 155 3×10-15</b></li><li>Hip Abduction 110 3×15-25 F</li><li>Seated Leg Curl 50 3×8-12 F</li><li>Leg Extension 80 3×12-15 F</li><li>Standing Calf Raise 55 3×8-12</li><li>Sit Up (wtd) 25 2×10-15</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li><b>Squat (Smith) 105 3×8-12</b></li><li><b>Hip Thrust 155 3×10-15</b></li><li>Hip Abduction 110 3×15-25 F</li><li>Seated Leg Curl 50 3×8-12 F</li><li>Leg Extension 80 3×12-15 F</li><li>Standing Calf Raise 55 3×8-12</li><li>Sit Up (wtd) 25 2×10-15</li></ul></td><td class="future"><span class="proj">Projected</span><ul><li><b>Squat (Smith) 105 3×8-12</b></li><li><b>Hip Thrust 155 3×10-15</b></li><li>Hip Abduction 110 3×15-25 F</li><li>Seated Leg Curl 50 3×8-12 F</li><li>Leg Extension 80 3×12-15 F</li><li>Standing Calf Raise 55 3×8-12</li><li>Sit Up (wtd) 25 2×10-15</li></ul></td><td class="future"><span class="dl">Deload</span>Same movements, no failure sets, volume cut to ≈60%.</td></tr></tbody></table></div>
-
- <h2 class="sec">Do this</h2>
- <ul class="flags"><li>Romanian Deadlift, Bulgarian Split Squat and loaded Standing Calf Raise are first exposures — calibrate on the first log and rebase upward from what the set actually shows.</li><li>Repeated lifts run on separate tracks: the heavy and moderate Hip Thrust, the A and B Hip Abduction, and the A and B Leg Extension each earn their own load. Never carry a load across.</li><li>Eat at maintenance or a slight surplus — fuelling is the gate on growth.</li><li>Smith Squat is deep below parallel every rep. A deep 45° leg press stands in only if the hips stay deep with no pelvis roll.</li><li>No Hip Abduction machine at one gym — standing single-leg plate abduction stands in, and its load never transfers to the machine track.</li></ul>
- 
- <h2 class="sec">Legend</h2>
- <dl class="legend"><div><dt>Double progression</dt><dd>Hold the load and add reps until every set reaches the top of the range. Then the load steps up and the reps reset to the bottom of the range.</dd></div><div><dt>F — failure set</dt><dd>The last set of that exercise is taken to technical failure. Reps past the top of the range on a failure set still count toward earning the next load.</dd></div><div><dt>Separate tracks</dt><dd>Lifts that appear on both days progress independently. Heavy and moderate Hip Thrust, A and B Hip Abduction, and A and B Leg Extension each hold their own load and range.</dd></div><div><dt>Week and meso clock</dt><dd>A mesocycle is five weeks: four working weeks and a deload. A week advances when both sessions are trained, in any order and on any schedule.</dd></div><div><dt>Deload</dt><dd>Week 5 keeps the same movements, drops the failure sets and cuts volume to roughly 60% so the next mesocycle starts fresh.</dd></div><div><dt>Result pills</dt><dd>+10 → 195 load earned. REBASED first-exposure load corrected from the log. CALIBRATED starting load set. HELD range not cleared. RESET load backed off. SUBSTITUTED a sanctioned stand-in was trained.</dd></div></dl>
-</section>
-
-<p class="foot">Rotation clock for Blake, program weeks for Lyndsay &mdash; both train on their own schedule.</p>
-</main>
-
-<script type="application/json" id="hybrid-datastore">
-{
- "program": "HYBRID WEAPON",
- "schema": 3,
- "clock": {
-  "unit": "rotation",
-  "rotation": 1,
-  "block": "build",
-  "queue": [
-   "lowerA",
-   "upperA",
-   "lowerB",
-   "upperB"
-  ],
-  "completedThisRotation": {
-   "lowerA": false,
-   "upperA": false,
-   "lowerB": false,
-   "upperB": false,
-   "z2armor": false,
-   "n4x4": false
-  },
-  "blocks": {
-   "1-4": "build",
-   "5": "deload",
-   "6-9": "strengthPower",
-   "10": "deloadTest"
-  }
- },
- "mainLifts": {
-  "squat": {
-   "topLb": 210,
-   "range": "4-6",
-   "backoffs": 3,
-   "backoffPct": 7,
-   "backoffLb": 195,
-   "status": "baseline",
-   "holds": 0
-  },
-  "bench": {
-   "topLb": 195,
-   "range": "4-6",
-   "backoffs": 3,
-   "backoffPct": 7,
-   "backoffLb": 180,
-   "status": "baseline",
-   "holds": 0
-  },
-  "ohp": {
-   "topLb": 110,
-   "range": "4-6",
-   "backoffs": 2,
-   "backoffPct": 9,
-   "backoffLb": 100,
-   "status": "baseline",
-   "holds": 0
-  },
-  "trapbar": {
-   "topLb": 245,
-   "range": "3-5",
-   "backoffs": 2,
-   "backoffPct": 9,
-   "backoffLb": 220,
-   "status": "baseline",
-   "holds": 0
-  }
- },
- "strengthPowerRanges": {
-  "squat": "3-5",
-  "bench": "3-5",
-  "ohp": "3-5",
-  "trapbar": "2-4",
-  "note": "Applied at rotation 6: main top/backoff ranges shift; accessories keep hypertrophy ranges."
- },
- "sprint": {
-  "block": 1,
-  "step": 3,
-  "current": "5x20m @95%",
-  "table": {
-   "1": "4x10m @85-90%",
-   "2": "5x15m @90-95%",
-   "3": "5x20m @95%",
-   "4": "5x20m @95-98%",
-   "5": "deload 3x15m @85-90%",
-   "block2": "after 6+ pain-free exposures: 3x20m accel + 2x flying 10m (20m build), rest 3-4min"
-  }
- },
- "jumps": {
-  "lowerB_slot2": "broad",
-  "alternation": "broad <-> 5-10-5 shuttle each rotation"
- },
- "firstExposures": [
-  "Bulgarian Split Squat (Dumbbell)",
-  "Chest Dip (Weighted)",
-  "Lat Pulldown (Cable)",
-  "Clap Push Ups",
-  "Lateral Bound to Stick",
-  "Single Arm Lateral Raise (Cable)",
-  "Cable Core Pallof Press",
-  "Deadlift (Trap bar)"
- ],
- "currentPrescriptions": {
-  "lowerA": [
-   {
-    "name": "Jump Rope (pogo)",
-    "sets": 2,
-    "rule": "manual"
-   },
-   {
-    "name": "Sprints",
-    "detail": "5x20m @95%",
-    "rule": "manual — advance per sprint.table each rotation"
-   },
-   {
-    "name": "Squat (Barbell)",
-    "topLb": 210,
-    "range": "4-6",
-    "backoffs": "3x195",
-    "rule": "top/backoff 4-6 +5lb bo7%"
-   },
-   {
-    "name": "Romanian Deadlift (Barbell)",
-    "lb": 160,
-    "sets": 3,
-    "range": "6-8",
-    "rule": "double 6-8 +10lb"
-   },
-   {
-    "name": "Bulgarian Split Squat (Dumbbell)",
-    "lb": 60,
-    "sets": 2,
-    "range": "8-12",
-    "rule": "double 8-12 +10lb",
-    "note": "first exposure - calibrate"
-   },
-   {
-    "name": "Lying Leg Curl (Machine)",
-    "lb": 75,
-    "sets": 2,
-    "range": "10-15",
-    "rule": "double 10-15 +5lb"
-   },
-   {
-    "name": "Standing Calf Raise (Dumbbell)",
-    "lb": 60,
-    "sets": 3,
-    "range": "8-12",
-    "rule": "double 8-12 +5lb"
-   },
-   {
-    "name": "Suitcase Carry (Dumbbell)",
-    "lb": 70,
-    "sets": 2,
-    "yards": 35,
-    "rule": "manual"
-   }
-  ],
-  "upperA": [
-   {
-    "name": "Clap Push Ups (plyo)",
-    "sets": 3,
-    "range": "3-5",
-    "rule": "manual"
-   },
-   {
-    "name": "Bench Press (Barbell)",
-    "topLb": 195,
-    "range": "4-6",
-    "backoffs": "3x180",
-    "rule": "top/backoff 4-6 +5lb bo7%"
-   },
-   {
-    "name": "Pull Up (Weighted)",
-    "lb": 12.5,
-    "sets": 3,
-    "range": "4-6",
-    "rule": "double 4-6 +5lb"
-   },
-   {
-    "name": "Incline Bench Press (Dumbbell)",
-    "lb": 110,
-    "sets": 3,
-    "range": "8-12",
-    "rule": "double 8-12 +10lb"
-   },
-   {
-    "name": "Chest Supported Incline Row (Dumbbell)",
-    "lb": 120,
-    "sets": 3,
-    "range": "8-12",
-    "rule": "double 8-12 +10lb"
-   },
-   {
-    "name": "Seated Incline Curl (Dumbbell)",
-    "lb": 40,
-    "sets": 2,
-    "range": "10-15",
-    "rule": "double 10-15 +10lb"
-   }
-  ],
-  "lowerB": [
-   {
-    "name": "Vertical Jump — Height",
-    "sets": 4,
-    "detail": "4x2 max CMJ, inches",
-    "rule": "manual"
-   },
-   {
-    "name": "Broad Jump (Max Effort)",
-    "sets": 3,
-    "detail": "3x2 broad OR 5-10-5 x3 (alternate rotations)",
-    "rule": "manual"
-   },
-   {
-    "name": "Lateral Bound to Stick",
-    "sets": 2,
-    "detail": "3/side",
-    "rule": "manual"
-   },
-   {
-    "name": "Deadlift (Trap bar)",
-    "topLb": 245,
-    "range": "3-5",
-    "backoffs": "2x220",
-    "rule": "top/backoff 3-5 +10lb bo9%"
-   },
-   {
-    "name": "Hack Squat (Machine)",
-    "lb": 160,
-    "sets": 3,
-    "range": "6-10",
-    "rule": "double 6-10 +10lb",
-    "note": "leg press = sanctioned stand-in, separate track"
-   },
-   {
-    "name": "Nordic Hamstrings Curls",
-    "sets": 2,
-    "range": "4-6",
-    "rule": "manual",
-    "note": "assisted"
-   },
-   {
-    "name": "Leg Extension (Machine)",
-    "lb": 140,
-    "sets": 2,
-    "range": "10-15",
-    "rule": "double 10-15 +5lb"
-   },
-   {
-    "name": "Calf Press (Machine)",
-    "lb": 360,
-    "sets": 3,
-    "range": "10-15",
-    "rule": "double 10-15 +10lb"
-   },
-   {
-    "name": "Farmers Walk",
-    "lb": 140,
-    "sets": 2,
-    "yards": 35,
-    "rule": "manual"
-   }
-  ],
-  "upperB": [
-   {
-    "name": "Overhead Press (Barbell)",
-    "topLb": 110,
-    "range": "4-6",
-    "backoffs": "2x100",
-    "rule": "top/backoff 4-6 +5lb bo9%"
-   },
-   {
-    "name": "Seated Cable Row - V Grip (Cable)",
-    "lb": 125,
-    "sets": 3,
-    "range": "6-10",
-    "rule": "double 6-10 +5lb"
-   },
-   {
-    "name": "Chest Dip (Weighted)",
-    "lb": 0,
-    "sets": 3,
-    "range": "6-10",
-    "rule": "double 6-10 +5lb",
-    "note": "BW start; CGB 3x6-10 @160 if shoulders complain"
-   },
-   {
-    "name": "Lat Pulldown (Cable)",
-    "lb": 100,
-    "sets": 3,
-    "range": "8-12",
-    "rule": "double 8-12 +10lb",
-    "note": "first exposure - calibrate"
-   },
-   {
-    "name": "Lateral Raise (Dumbbell)",
-    "lb": 30,
-    "sets": 2,
-    "range": "12-20",
-    "rule": "double 12-20 +10lb"
-   },
-   {
-    "name": "Hammer Curl (Dumbbell)",
-    "lb": 60,
-    "sets": 2,
-    "range": "8-12",
-    "rule": "double 8-12 +10lb"
-   },
-   {
-    "name": "Hanging Leg Raise",
-    "sets": 2,
-    "range": "8-15",
-    "rule": "manual"
-   }
-  ],
-  "z2armor": [
-   {
-    "name": "Cycling Z2",
-    "detail": "45-50min bike/run/ruck",
-    "rule": "manual"
-   },
-   {
-    "name": "Single Arm Lateral Raise (Cable)",
-    "lb": 15,
-    "sets": 3,
-    "range": "12-20",
-    "rule": "double 12-20 +5lb"
-   },
-   {
-    "name": "Face Pull",
-    "lb": 50,
-    "sets": 2,
-    "range": "12-20",
-    "rule": "double 12-20 +5lb"
-   },
-   {
-    "name": "Overhead Triceps Extension (Cable)",
-    "lb": 35,
-    "sets": 2,
-    "range": "10-15",
-    "rule": "double 10-15 +5lb"
-   },
-   {
-    "name": "Tibialis Raise",
-    "sets": 2,
-    "range": "15-25",
-    "rule": "manual"
-   },
-   {
-    "name": "Copenhagen (Side Plank)",
-    "sets": 2,
-    "detail": "20-30s/side",
-    "rule": "manual"
-   },
-   {
-    "name": "Cable Core Pallof Press",
-    "lb": 20,
-    "sets": 2,
-    "range": "10-15",
-    "rule": "double 10-15 +5lb"
-   }
-  ],
-  "n4x4": [
-   {
-    "name": "Cycling 4x4",
-    "detail": "4x4:00 @RPE8-9 / 3:00 easy",
-    "rule": "manual"
-   }
-  ]
- },
- "explosive": {
-  "broadJump": null,
-  "verticalJump": null,
-  "sprint30m": null
- },
- "conditioning": {
-  "hrmax": null,
-  "vo2maxEst": null,
-  "n4x4AvgWatts": null,
-  "z2AvgWatts": null
- },
- "body": {
-  "weightLb": {
-   "value": 211,
-   "date": "2026-07-26",
-   "stale": false
-  },
-  "tape": {
-   "date": "2026-05-22",
-   "chestIn": 41.3,
-   "waistIn": 35.5,
-   "hipsIn": 43.0,
-   "thighIn": 24.6,
-   "bicepIn": 15.75
-  }
- },
- "readiness": "GREEN default; YELLOW/RED logged at top of workout note. YELLOW: no sprints/max jumps, -1 back-off. RED: no heavy/explosive. Never penalize a YELLOW/RED session with holds or resets.",
- "unitsNote": "Whole POUNDS (WPU 12.5 plate real). DB entries TOTAL both hands. Jumps = INCHES in distance field. Carries = YARDS."
-}
-</script>
-<script type="application/json" id="shelf-datastore">
-{
- "program": "LYNNIE LEGS",
- "schema": 1,
- "state": {
-  "meso": 1,
-  "mesoName": "Build",
-  "week": 1,
-  "weeksPerMeso": 5
- },
- "mainLifts": {
-  "hipThrust": {
-   "lb": 185,
-   "sets": 3,
-   "range": "6-10",
-   "status": "baseline",
-   "resetsThisMeso": 0,
-   "belowAStreak": 0,
-   "note": "HEAVY track (day 1, 6-10 @185). Day 2 MODERATE track (10-15 @155) progresses independently - never share loads."
-  },
-  "smithSquat": {
-   "lb": 105,
-   "sets": 3,
-   "range": "8-12",
-   "status": "baseline",
-   "resetsThisMeso": 0,
-   "belowAStreak": 0,
-   "note": "DEEP below parallel. Deep 45-deg leg press is a sanctioned stand-in only if it allows deep hips, no pelvis roll."
-  },
-  "hipAbduction": {
-   "lb": 110,
-   "sets": 6,
-   "range": "12-20 d1 / 15-25 d2",
-   "status": "baseline",
-   "resetsThisMeso": 0,
-   "belowAStreak": 0,
-   "note": "SEPARATE TRACKS: Day 1 (12-20) at 120 - earned 2026-08-04; Day 2 (15-25) at 110, must earn 120 independently. Never transfer loads between tracks."
-  }
- },
- "currentPrescriptions": {
-  "day1": [
-   {
-    "name": "Hip Thrust (Barbell)",
-    "lb": 185,
-    "sets": 3,
-    "range": "6-10",
-    "failureSet": false,
-    "rule": "double 6-10 +10lb",
-    "belowAStreak": 0,
-    "note": "heavy track - independent of day 2"
-   },
-   {
-    "name": "Bulgarian Split Squat (Smith or DB)",
-    "lb": 50,
-    "sets": 3,
-    "range": "8-12",
-    "failureSet": false,
-    "rule": "double 8-12 +5lb",
-    "belowAStreak": 0,
-    "note": "per leg, weaker leg first, DEEP, Smith (DB fallback = separate track)"
-   },
-   {
-    "name": "Romanian Deadlift (Smith or Barbell)",
-    "lb": 95,
-    "sets": 3,
-    "range": "8-12",
-    "failureSet": false,
-    "rule": "double 8-12 +10lb",
-    "belowAStreak": 0,
-    "note": "first exposure - calibrate, rebase upward from log"
-   },
-   {
-    "name": "Hip Abduction (Machine)",
-    "lb": 120,
-    "sets": 3,
-    "range": "12-20",
-    "failureSet": true,
-    "rule": "double 12-20 +10lb",
-    "belowAStreak": 0,
-    "note": "A track - independent of day 2"
-   },
-   {
-    "name": "Leg Extension (Machine)",
-    "lb": 90,
-    "sets": 3,
-    "range": "10-15",
-    "failureSet": true,
-    "rule": "double 10-15 +5lb",
-    "belowAStreak": 0,
-    "note": "A track (heavier), reclined"
-   },
-   {
-    "name": "Hanging Leg Raise",
-    "lb": null,
-    "sets": 2,
-    "range": "8-15",
-    "failureSet": false,
-    "rule": "manual",
-    "belowAStreak": 0
-   }
-  ],
-  "day2": [
-   {
-    "name": "Squat (Smith Machine)",
-    "lb": 105,
-    "sets": 3,
-    "range": "8-12",
-    "failureSet": false,
-    "rule": "double 8-12 +5lb",
-    "belowAStreak": 0,
-    "note": "DEEP below parallel every rep"
-   },
-   {
-    "name": "Hip Thrust (Barbell)",
-    "lb": 155,
-    "sets": 3,
-    "range": "10-15",
-    "failureSet": false,
-    "rule": "double 10-15 +10lb",
-    "belowAStreak": 0,
-    "note": "moderate track - independent of day 1"
-   },
-   {
-    "name": "Hip Abduction (Machine)",
-    "lb": 110,
-    "sets": 3,
-    "range": "15-25",
-    "failureSet": true,
-    "rule": "double 15-25 +10lb",
-    "belowAStreak": 0,
-    "note": "B track - earn 120 independently"
-   },
-   {
-    "name": "Seated Leg Curl (Machine)",
-    "lb": 50,
-    "sets": 3,
-    "range": "8-12",
-    "failureSet": true,
-    "rule": "double 8-12 +5lb",
-    "belowAStreak": 0
-   },
-   {
-    "name": "Leg Extension (Machine)",
-    "lb": 80,
-    "sets": 3,
-    "range": "12-15",
-    "failureSet": true,
-    "rule": "double 12-15 +5lb",
-    "belowAStreak": 0,
-    "note": "B track, reclined"
-   },
-   {
-    "name": "Standing Calf Raise",
-    "lb": 55,
-    "sets": 3,
-    "range": "8-12",
-    "failureSet": false,
-    "rule": "double 8-12 +10lb",
-    "belowAStreak": 0,
-    "note": "first loaded exposure - calibrate, rebase upward"
-   },
-   {
-    "name": "Sit Up (Weighted)",
-    "lb": 25,
-    "sets": 2,
-    "range": "10-15",
-    "failureSet": false,
-    "rule": "double 10-15 +5lb",
-    "belowAStreak": 0
-   }
-  ]
- },
- "substitutions": {
-  "Hip Abduction (Machine)": "One of her gyms has no machine - standing single-leg plate abduction stands in there; never adopt its load.",
-  "Bulgarian Split Squat (Smith or DB)": "No Smith -> DUMBBELL Bulgarian Split Squat, same sets/reps (sanctioned in the exercise note; separate track, never adopt its load into the Smith Rx)."
- },
- "sessionNames": {
-  "day1": "① LOWER — Hip Thrust",
-  "day2": "② LOWER — Squat"
- },
- "flags": [
-  "Romanian Deadlift, Bulgarian Split Squat and loaded Standing Calf Raise are first exposures — calibrate on the first log and rebase upward from what the set actually shows.",
-  "Repeated lifts run on separate tracks: the heavy and moderate Hip Thrust, the A and B Hip Abduction, and the A and B Leg Extension each earn their own load. Never carry a load across.",
-  "Eat at maintenance or a slight surplus — fuelling is the gate on growth.",
-  "Smith Squat is deep below parallel every rep. A deep 45° leg press stands in only if the hips stay deep with no pelvis roll.",
-  "No Hip Abduction machine at one gym — standing single-leg plate abduction stands in, and its load never transfers to the machine track."
- ]
-}
-</script>
+<body>
+<div class="topbar">
+  <span class="brand">Training HQ</span>
+  <div class="tabs" role="tablist">
+    <button class="tab" id="tab-blake" role="tab" aria-selected="true" type="button">⚡ Blake</button>
+    <button class="tab" id="tab-lyndsay" role="tab" aria-selected="false" type="button">🚛 Lynnie Legs</button>
+  </div>
+</div>
+<div class="pane blake active" id="pane-blake"><main id="main-blake"></main></div>
+<div class="pane lyndsay" id="pane-lyndsay"><main id="main-lyndsay"></main></div>
+<footer>rendered from Hevy state · updates Sunday nights</footer>
+<!-- HQ-DATA-START -->
+<script type="application/json" id="hq-data">{"schema": "hq1", "generated": "2026-08-06", "blake": {"header": "Blake — HYBRID WEAPON", "chips": ["Rotation 1", "Build (R1–4)"], "banner": null, "sessions": [{"id": "lowerA", "title": "① Lower A — Accel + Squat", "done": false, "rows": [{"name": "Jump Rope (pogo)", "rule": "manual", "rx": "2×", "logged": null, "pill": null, "driver": false}, {"name": "Sprints", "rule": "manual — advance per sprint.table each rotation", "rx": "5x20m @95%", "logged": null, "pill": null, "driver": true}, {"name": "Squat (Barbell)", "rule": "top/backoff 4-6 +5lb bo7%", "rx": "top 210×4-6 · 3x195", "logged": null, "pill": null, "driver": true}, {"name": "Romanian Deadlift (Barbell)", "rule": "double 6-8 +10lb", "rx": "160 lb · 3×6-8", "logged": null, "pill": null, "driver": false}, {"name": "Bulgarian Split Squat (Dumbbell)", "rule": "double 8-12 +10lb", "rx": "60 lb · 2×8-12", "logged": null, "pill": null, "driver": false}, {"name": "Lying Leg Curl (Machine)", "rule": "double 10-15 +5lb", "rx": "75 lb · 2×10-15", "logged": null, "pill": null, "driver": false}, {"name": "Standing Calf Raise (Dumbbell)", "rule": "double 8-12 +5lb", "rx": "60 lb · 3×8-12", "logged": null, "pill": null, "driver": false}, {"name": "Suitcase Carry (Dumbbell)", "rule": "manual", "rx": "70 lb · 2× · 35 yd", "logged": null, "pill": null, "driver": false}]}, {"id": "upperA", "title": "② Upper A — Explosive Push + Bench", "done": false, "rows": [{"name": "Clap Push Ups (plyo)", "rule": "manual", "rx": "3×3-5", "logged": null, "pill": null, "driver": false}, {"name": "Bench Press (Barbell)", "rule": "top/backoff 4-6 +5lb bo7%", "rx": "top 195×4-6 · 3x180", "logged": null, "pill": null, "driver": true}, {"name": "Pull Up (Weighted)", "rule": "double 4-6 +5lb", "rx": "12.5 lb · 3×4-6", "logged": null, "pill": null, "driver": false}, {"name": "Incline Bench Press (Dumbbell)", "rule": "double 8-12 +10lb", "rx": "110 lb · 3×8-12", "logged": null, "pill": null, "driver": false}, {"name": "Chest Supported Incline Row (Dumbbell)", "rule": "double 8-12 +10lb", "rx": "120 lb · 3×8-12", "logged": null, "pill": null, "driver": false}, {"name": "Seated Incline Curl (Dumbbell)", "rule": "double 10-15 +10lb", "rx": "40 lb · 2×10-15", "logged": null, "pill": null, "driver": false}]}, {"id": "lowerB", "title": "③ Lower B — Jump/COD + Hinge", "done": false, "rows": [{"name": "Vertical Jump — Height", "rule": "manual", "rx": "4x2 max CMJ, inches", "logged": null, "pill": null, "driver": true}, {"name": "Broad Jump (Max Effort)", "rule": "manual", "rx": "3x2 broad OR 5-10-5 x3 (alternate rotations)", "logged": null, "pill": null, "driver": true}, {"name": "Lateral Bound to Stick", "rule": "manual", "rx": "3/side", "logged": null, "pill": null, "driver": false}, {"name": "Deadlift (Trap bar)", "rule": "top/backoff 3-5 +10lb bo9%", "rx": "top 245×3-5 · 2x220", "logged": null, "pill": null, "driver": true}, {"name": "Hack Squat (Machine)", "rule": "double 6-10 +10lb", "rx": "160 lb · 3×6-10", "logged": null, "pill": null, "driver": false}, {"name": "Nordic Hamstrings Curls", "rule": "manual", "rx": "2×4-6", "logged": null, "pill": null, "driver": false}, {"name": "Leg Extension (Machine)", "rule": "double 10-15 +5lb", "rx": "140 lb · 2×10-15", "logged": null, "pill": null, "driver": false}, {"name": "Calf Press (Machine)", "rule": "double 10-15 +10lb", "rx": "360 lb · 3×10-15", "logged": null, "pill": null, "driver": false}, {"name": "Farmers Walk", "rule": "manual", "rx": "140 lb · 2× · 35 yd", "logged": null, "pill": null, "driver": false}]}, {"id": "upperB", "title": "④ Upper B — Overhead + Size", "done": false, "rows": [{"name": "Overhead Press (Barbell)", "rule": "top/backoff 4-6 +5lb bo9%", "rx": "top 110×4-6 · 2x100", "logged": null, "pill": null, "driver": true}, {"name": "Seated Cable Row - V Grip (Cable)", "rule": "double 6-10 +5lb", "rx": "125 lb · 3×6-10", "logged": null, "pill": null, "driver": false}, {"name": "Chest Dip (Weighted)", "rule": "double 6-10 +5lb", "rx": "0 lb · 3×6-10", "logged": null, "pill": null, "driver": false}, {"name": "Lat Pulldown (Cable)", "rule": "double 8-12 +10lb", "rx": "100 lb · 3×8-12", "logged": null, "pill": null, "driver": false}, {"name": "Lateral Raise (Dumbbell)", "rule": "double 12-20 +10lb", "rx": "30 lb · 2×12-20", "logged": null, "pill": null, "driver": false}, {"name": "Hammer Curl (Dumbbell)", "rule": "double 8-12 +10lb", "rx": "60 lb · 2×8-12", "logged": null, "pill": null, "driver": false}, {"name": "Hanging Leg Raise", "rule": "manual", "rx": "2×8-15", "logged": null, "pill": null, "driver": false}]}, {"id": "z2armor", "title": "⑤ Zone 2 + Armor", "done": false, "rows": [{"name": "Cycling Z2", "rule": "manual", "rx": "45-50min bike/run/ruck", "logged": null, "pill": null, "driver": false}, {"name": "Single Arm Lateral Raise (Cable)", "rule": "double 12-20 +5lb", "rx": "15 lb · 3×12-20", "logged": null, "pill": null, "driver": false}, {"name": "Face Pull", "rule": "double 12-20 +5lb", "rx": "50 lb · 2×12-20", "logged": null, "pill": null, "driver": false}, {"name": "Overhead Triceps Extension (Cable)", "rule": "double 10-15 +5lb", "rx": "35 lb · 2×10-15", "logged": null, "pill": null, "driver": false}, {"name": "Tibialis Raise", "rule": "manual", "rx": "2×15-25", "logged": null, "pill": null, "driver": false}, {"name": "Copenhagen (Side Plank)", "rule": "manual", "rx": "20-30s/side", "logged": null, "pill": null, "driver": false}, {"name": "Cable Core Pallof Press", "rule": "double 10-15 +5lb", "rx": "20 lb · 2×10-15", "logged": null, "pill": null, "driver": false}]}, {"id": "n4x4", "title": "⑥ Norwegian 4×4", "done": false, "rows": [{"name": "Cycling 4x4", "rule": "manual", "rx": "4x4:00 @RPE8-9 / 3:00 easy", "logged": null, "pill": null, "driver": false}]}], "ladder": {"title": "Main-Lift Ladder", "hint": "R5 = deload", "rows": ["Squat", "Bench", "Trap-Bar DL", "OHP", "Weighted Pull-Up"], "cols": ["R1", "R2", "R3", "R4", "R5"], "deloadCols": ["R5"], "cur": "R1", "cells": {"Squat": {"R1": {"main": "top 210", "sub": "3×195 · 4-6"}}, "Bench": {"R1": {"main": "top 195", "sub": "3×180 · 4-6"}}, "Trap-Bar DL": {"R1": {"main": "top 245", "sub": "2×220 · 3-5"}}, "OHP": {"R1": {"main": "top 110", "sub": "2×100 · 4-6"}}, "Weighted Pull-Up": {"R1": {"main": "12.5", "sub": "3×4-6"}}}, "e1rm": {"Squat": 238, "Bench": 228, "Trap-Bar DL": null, "OHP": 128, "Weighted Pull-Up": null}}, "tiles": [{"group": "Explosive", "items": [{"label": "Vertical", "value": null, "unit": "in", "sub": "chalk CMJ — log next ③"}, {"label": "Broad", "value": null, "unit": "in", "sub": "log next ③"}, {"label": "20 m", "value": null, "unit": "s", "sub": "time a sprint rep"}, {"label": "5-10-5", "value": null, "unit": "s", "sub": "alternates with broad"}]}, {"group": "Engine", "items": [{"label": "HRmax", "value": null, "unit": "bpm", "sub": "last 4×4 interval"}, {"label": "4×4 watts", "value": null, "unit": "W", "sub": "avg across intervals"}, {"label": "Zone 2", "value": null, "unit": "W", "sub": "watts or pace"}]}, {"group": "Body", "items": [{"label": "Bodyweight", "value": "211", "unit": "lb", "sub": "2026-07-26 · weekly avg pending"}, {"label": "Waist", "value": "35.5", "unit": "in", "sub": "tape 2026-05-22"}, {"label": "Chest", "value": "41.3", "unit": "in", "sub": "tape 2026-05-22"}, {"label": "Thigh", "value": "24.6", "unit": "in", "sub": "tape 2026-05-22"}, {"label": "Bicep", "value": "15.75", "unit": "in", "sub": "tape 2026-05-22"}]}], "flags": ["First HYBRID WEAPON session is ① Lower A — full-rested day.", "Log jump (inches), 20m time, HRmax and watts baselines this rotation.", "First exposures calibrate from your first log: DB Bulgarian, trap-bar top set, weighted dips, lat pulldown, plyo push-ups, lateral bounds, cable lateral, Pallof.", "Start the small surplus (+150-250 kcal) and creatine 3-5 g/day; weigh in 3-4×/wk."], "history": [], "archive": [{"title": "HYBRID — Meso 1 (Jul 29 – Aug 5 2026, pre-WEAPON)", "entries": [{"label": "W1 · 2026-07-30", "text": "Low-volume week — only Lower A logged. Squat 210×4×4 clean (dry run, no writes). First bodyweight in 8 months: 211 lb."}, {"label": "W2 · 2026-08-03", "text": "3 sessions → week advanced. Bench 190→195, OHP 105→110; four accessories advanced a rep. Deadlift held at 245 after an off-plan 255×3,3,2."}, {"label": "W1 · 2026-08-04", "text": "Squat 210×4/4/4/4 clean → earned 215. Standing calf 60 lb ran 15/14/14/14 over range → earned 70 (loadable jump). Final HYBRID session before the WEAPON restructure."}], "note": "Loads carried into HYBRID WEAPON as R1 tops: Squat 210, Bench 195, OHP 110, hinge 245."}]}, "lyndsay": {"header": "Lynnie Legs", "chips": ["Week 1 of 5", "Meso 1"], "banner": null, "sessions": [{"id": "day1", "title": "① Lower — Hip Thrust", "done": true, "rows": [{"name": "Hip Thrust (Barbell)", "rule": "double 6-10 +10lb", "rx": "185 lb · 3×6-10", "logged": null, "pill": null, "driver": true}, {"name": "Bulgarian Split Squat (Smith or DB)", "rule": "double 8-12 +5lb", "rx": "50 lb · 3×8-12", "logged": null, "pill": null, "driver": false}, {"name": "Romanian Deadlift (Smith or Barbell)", "rule": "double 8-12 +10lb", "rx": "95 lb · 3×8-12", "logged": null, "pill": null, "driver": false}, {"name": "Hip Abduction (Machine)", "rule": "double 12-20 +10lb", "rx": "120 lb · 3×12-20 · last set F", "logged": null, "pill": null, "driver": false}, {"name": "Leg Extension (Machine)", "rule": "double 10-15 +5lb", "rx": "90 lb · 3×10-15 · last set F", "logged": null, "pill": null, "driver": false}, {"name": "Hanging Leg Raise", "rule": "manual", "rx": "2×8-15", "logged": null, "pill": null, "driver": false}]}, {"id": "day2", "title": "② Lower — Squat", "done": false, "rows": [{"name": "Squat (Smith Machine)", "rule": "double 8-12 +5lb", "rx": "105 lb · 3×8-12", "logged": null, "pill": null, "driver": true}, {"name": "Hip Thrust (Barbell)", "rule": "double 10-15 +10lb", "rx": "155 lb · 3×10-15", "logged": null, "pill": null, "driver": true}, {"name": "Hip Abduction (Machine)", "rule": "double 15-25 +10lb", "rx": "110 lb · 3×15-25 · last set F", "logged": null, "pill": null, "driver": false}, {"name": "Seated Leg Curl (Machine)", "rule": "double 8-12 +5lb", "rx": "50 lb · 3×8-12 · last set F", "logged": null, "pill": null, "driver": false}, {"name": "Leg Extension (Machine)", "rule": "double 12-15 +5lb", "rx": "80 lb · 3×12-15 · last set F", "logged": null, "pill": null, "driver": false}, {"name": "Standing Calf Raise", "rule": "double 8-12 +10lb", "rx": "55 lb · 3×8-12", "logged": null, "pill": null, "driver": false}, {"name": "Sit Up (Weighted)", "rule": "double 10-15 +5lb", "rx": "25 lb · 2×10-15", "logged": null, "pill": null, "driver": false}]}], "ladder": {"title": "Anchor Ladder", "hint": "W5 = deload", "rows": ["Hip Thrust (heavy)", "Smith Squat", "Hip Abduction A"], "cols": ["W1", "W2", "W3", "W4", "W5"], "deloadCols": ["W5"], "cur": "W1", "cells": {"Hip Thrust (heavy)": {"W1": {"main": "185", "sub": "3×6-10"}}, "Smith Squat": {"W1": {"main": "105", "sub": "3×8-12 deep"}}, "Hip Abduction A": {"W1": {"main": "120", "sub": "3×12-20"}}}, "e1rm": null}, "tiles": [], "flags": ["Next session: ② Lower — Squat (new structure).", "Weekly weigh-ins are the top ask — the trend can't be read without them.", "RDL, Smith Bulgarians, and loaded standing calf calibrate from your first log — pick a weight and go.", "Eat at maintenance or a slight surplus — that's the gate on this program working."], "history": [], "archive": []}}</script>
+<!-- HQ-DATA-END -->
 <script>
 (function(){
- var b=document.getElementById('tab-blake'),l=document.getElementById('tab-lyndsay'),
-     sb=document.getElementById('sec-blake'),sl=document.getElementById('sec-lyndsay'),
-     body=document.body,root=document.documentElement;
- function show(who,push){
-  var isB=who!=='lyndsay';
-  sb.hidden=!isB; sl.hidden=isB;
-  b.setAttribute('aria-selected',isB?'true':'false');
-  l.setAttribute('aria-selected',isB?'false':'true');
-  body.className=isB?'on-blake':'on-lyn';
-  if(push){try{history.replaceState(null,'',isB?'#blake':'#lyndsay');}catch(e){location.hash=isB?'blake':'lyndsay';}}
-  window.scrollTo(0,0);
- }
- b.addEventListener('click',function(){show('blake',true);});
- l.addEventListener('click',function(){show('lyndsay',true);});
- window.addEventListener('hashchange',function(){show(location.hash.replace('#',''),false);});
- show(location.hash.replace('#','')||'blake',false);
-
- var t=document.getElementById('themebtn');
- function paint(){
-  var m=root.getAttribute('data-theme')||'auto';
-  t.setAttribute('data-mode',m);
-  t.setAttribute('aria-label','Theme: '+(m==='auto'?'system':m));
-  t.title='Theme: '+(m==='auto'?'system':m);
- }
- try{var saved=localStorage.getItem('thq-theme'); if(saved){root.setAttribute('data-theme',saved);}}catch(e){}
- paint();
- t.addEventListener('click',function(){
-  var m=root.getAttribute('data-theme');
-  var next=m==='light'?'dark':(m==='dark'?'':'light');
-  if(next){root.setAttribute('data-theme',next);}else{root.removeAttribute('data-theme');}
-  try{next?localStorage.setItem('thq-theme',next):localStorage.removeItem('thq-theme');}catch(e){}
-  paint();
- });
+"use strict";
+var D=JSON.parse(document.getElementById("hq-data").textContent);
+function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function sect(m,title,hint){var s=el("section"),h=el("div","shead");h.appendChild(el("h2",null,esc(title)));if(hint)h.appendChild(el("span","hint",esc(hint)));s.appendChild(h);m.appendChild(s);return s}
+function pill(p){if(!p)return el("span","pill p-none","not logged");var k={up:"p-up",hold:"p-hold",warn:"p-warn",sub:"p-sub",cal:"p-up",none:"p-none"}[p.kind]||"p-hold";return el("span","pill "+k,esc(p.text))}
+function card(s){var c=el("article","card "+(s.done?"done":"todo")),h=el("div","chead");h.appendChild(el("h3",null,esc(s.title)));h.appendChild(el("span","badge "+(s.done?"b-ok":"b-wait"),s.done?"TRAINED":"PENDING"));c.appendChild(h);
+var rs=el("div","rows");(s.rows||[]).forEach(function(r){var d=el("div","row"+(r.driver?" drv":""));var nm=el("div","nm",esc(r.name));if(r.rule)nm.appendChild(el("span","rule",esc(r.rule)));d.appendChild(nm);
+d.appendChild(el("div","rx",'<span class="lbl">Rx</span>'+esc(r.rx||"")));
+if(r.logged)d.appendChild(el("div","logged",'<span class="lbl">Log</span>'+esc(r.logged)));
+d.appendChild(pill(r.pill));rs.appendChild(d)});c.appendChild(rs);return c}
+function ladder(sec,L){var w=el("div","scroller"),t=el("table"),th=el("thead"),tr=el("tr");tr.appendChild(el("th",null,"Lift"));
+L.cols.forEach(function(c){var x=el("th",(c===L.cur?"cur":null));x.textContent=c+((L.deloadCols||[]).indexOf(c)>=0?" · DL":"");tr.appendChild(x)});
+if(L.e1rm)tr.appendChild(el("th",null,"e1RM"));th.appendChild(tr);t.appendChild(th);
+var tb=el("tbody");L.rows.forEach(function(r){var row=el("tr");row.appendChild(el("th",null,esc(r)));
+L.cols.forEach(function(c){var cell=(L.cells[r]||{})[c],td=el("td",(c===L.cur?"cur":null));
+td.innerHTML=cell?esc(cell.main)+(cell.sub?'<span class="sub">'+esc(cell.sub)+"</span>":""):"—";row.appendChild(td)});
+if(L.e1rm){var e=el("td","e1");e.textContent=(L.e1rm[r]!=null?L.e1rm[r]:"—");row.appendChild(e)}
+tb.appendChild(row)});t.appendChild(tb);w.appendChild(t);sec.appendChild(w)}
+function render(who){var d=D[who],m=document.getElementById("main-"+who);m.innerHTML="";
+m.appendChild(el("h1",null,who==="blake"?esc(d.header).replace("— ","— <span class=sub>")+"</span>":esc(d.header)));
+var ch=el("div","chips");(d.chips||[]).forEach(function(c,i){ch.appendChild(el("span","chip"+(i===0?" hot":""),esc(c)))});m.appendChild(ch);
+if(d.banner)m.appendChild(el("div","banner",esc(d.banner)));
+var s1=sect(m,who==="blake"?"This Rotation":"This Week");(d.sessions||[]).forEach(function(s){s1.appendChild(card(s))});
+if(d.ladder){var s2=sect(m,d.ladder.title||"Ladder",d.ladder.hint);ladder(s2,d.ladder)}
+if(d.tiles&&d.tiles.length){var s3=sect(m,"Numbers");d.tiles.forEach(function(g){var tg=el("div","tgroup");tg.appendChild(el("h4",null,esc(g.group)));
+var ts=el("div","tiles");g.items.forEach(function(it){var t=el("div","tile"+(it.value==null?" empty":""));t.appendChild(el("div","tlabel",esc(it.label)));
+t.appendChild(el("div","tval",it.value==null?"—":esc(it.value)+(it.unit?' <span class="tunit">'+esc(it.unit)+"</span>":"")));
+if(it.sub)t.appendChild(el("div","tsub",esc(it.sub)));ts.appendChild(t)});tg.appendChild(ts);s3.appendChild(tg)})}
+if(d.flags&&d.flags.length){var s4=sect(m,"Do This"),ul=el("ul","flags");d.flags.forEach(function(f){ul.appendChild(el("li",null,esc(f)))});s4.appendChild(ul)}
+if(d.history&&d.history.length){var s5=sect(m,"History"),ol=el("ol","hist");d.history.forEach(function(h){var li=el("li");li.appendChild(el("div","hlabel",esc(h.label)));li.appendChild(el("p","htext",esc(h.text)));ol.appendChild(li)});s5.appendChild(ol)}
+if(d.archive&&d.archive.length){var s6=sect(m,"Archive","previous blocks");d.archive.forEach(function(p){var dt=el("details","period"),sm=el("summary",null,esc(p.title));dt.appendChild(sm);
+var pb=el("div","pbody");if(p.entries){var ol2=el("ol","hist");p.entries.forEach(function(h){var li=el("li");li.appendChild(el("div","hlabel",esc(h.label)));li.appendChild(el("p","htext",esc(h.text)));ol2.appendChild(li)});pb.appendChild(ol2)}
+if(p.ladder)ladder(pb,p.ladder);
+if(p.note)pb.appendChild(el("p","pnote",esc(p.note)));dt.appendChild(pb);s6.appendChild(dt)})}
+var s7=sect(m,"Legend"),dl=el("dl","legend");
+var leg=who==="blake"?[["Top / back-offs","first set is the heavy top set; back-offs slightly lighter. Top of range + back-offs within 1 rep = weight goes up."],["Double progression","all sets at the top of the range = smallest real jump."],["Readiness","YELLOW or RED at the top of the workout note (blank = GREEN). Yellow: no sprints/max jumps, one fewer back-off. Red: nothing heavy or explosive."],["Rotation","①→②→③→④ + one Z2/armor + one 4×4, any order. Queue pauses, never resets."]]:[["Double progression","every set (incl. the F set) at the top of the range = weight goes up; overshooting jumps double."],["F","last set to failure by design."],["Tracks","repeated lifts progress separately on each day — different loads on purpose."]];
+leg.forEach(function(kv){dl.appendChild(el("dt",null,esc(kv[0])));dl.appendChild(el("dd",null,esc(kv[1])))});s7.appendChild(dl);}
+function show(who){["blake","lyndsay"].forEach(function(w){document.getElementById("pane-"+w).classList.toggle("active",w===who);document.getElementById("tab-"+w).setAttribute("aria-selected",w===who?"true":"false")});}
+document.getElementById("tab-blake").onclick=function(){show("blake");location.hash="#blake"};
+document.getElementById("tab-lyndsay").onclick=function(){show("lyndsay");location.hash="#lyndsay"};
+render("blake");render("lyndsay");
+if(location.hash==="#lyndsay")show("lyndsay");
 })();
 </script>
 </body>
